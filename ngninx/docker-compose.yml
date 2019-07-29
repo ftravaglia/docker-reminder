@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:latest
+    extra_hosts:
+    - rundeck.localhost:172.17.0.1
+    - rocketchat.localhost:172.17.0.1
+    volumes:
+      - /home/ftravaglia/work/docker/ngninx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
