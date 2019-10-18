@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  sonarqube-audit:
+    image: sonarqube:lts
+    ports:
+    - 9000:9000
+    volumes:
+    - sonar-conf-vol:/opt/sonarqube/conf 
+    - sonar-data-vol:/opt/sonarqube/data 
+    - sonar-log-vol:/opt/sonarqube/logs 
+    - sonar-extension-vol:/opt/sonarqube/extensions 
+
+volumes:
+  sonar-data-vol:
+    external: true
+    name: sonar-audit-data-vol
+  sonar-conf-vol:
+    external: true
+    name: sonar-audit-conf-vol
+  sonar-log-vol:
+    external: true
+    name: sonar-audit-log-vol
+  sonar-extension-vol:
+    external: true
+    name: sonar-audit-extension-vol

@@ -15,12 +15,6 @@ services:
     - vmi-local-3:192.168.56.103
     - rundeck.localhost:172.17.0.1
     - rocketchat.localhost:172.17.0.1
-    environment:
-    - RUNDECK_DATABASE_URL=jdbc:postgresql://172.17.0.1:5432/rundeck
-    - RUNDECK_DATABASE_DRIVER=org.postgresql.Driver
-    - RUNDECK_DATABASE_USERNAME=rundeck
-    - RUNDECK_DATABASE_PASSWORD=rundeck
-    - RUNDECK_GRAILS_URL=http://rundeck.localhost
   bdd:
     image: postgres:9
     ports:
@@ -30,7 +24,7 @@ services:
     environment:
     - POSTGRES_PASSWORD=rundeck
     - POSTGRES_USER=rundeck    
-    - POSTGRES_DB=rundeck"
+    - POSTGRES_DB=rundeck
 volumes:
 
   rundeck-ssh-vol: 

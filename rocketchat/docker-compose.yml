@@ -4,7 +4,6 @@ services:
   rocketchat:
     image: rocket.chat:latest
     command: bash -c 'for i in `seq 1 30`; do node main.js && s=$$? && break || s=$$?; echo "Tried $$i times. Waiting 5 secs..."; sleep 5; done; (exit $$s)'
-    restart: unless-stopped
     extra_hosts:
       - rocketchat.localhost:172.17.0.1
     volumes:
@@ -22,7 +21,6 @@ services:
 
   mongo:
     image: mongo
-    restart: unless-stopped
     volumes:
      - mongo-data-db-vol:/data/db
      - mongo-data-dump-vol:/dump
@@ -40,7 +38,6 @@ services:
   # hubot, the popular chatbot (add the bot user first and change the password before starting this image)
   hubot:
     image: rocketchat/hubot-rocketchat:latest
-    restart: unless-stopped
     environment:
       - ROCKETCHAT_URL=172.17.0.1:3000
       - ROCKETCHAT_ROOM=GENERAL

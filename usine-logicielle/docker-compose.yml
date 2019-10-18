@@ -1,0 +1,63 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+    - 10080:8080
+    - 50000:50000
+    volumes:
+    - jenkins-home-vol:/var/jenkins_home
+  gitlab:
+    image: gitlab/gitlab-ce
+    ports:
+    - 8080:80
+    - 4430:443
+    - 2222:022
+    volumes:
+    - gitlab-config-vol:/etc/gitlab
+    - gitlab-log-vol:/var/log/gitlab
+    - gitlab-data-vol:/var/opt/gitlab
+  nexus:
+    image: sonatype/nexus3
+    ports:
+    - 8081:8081
+    volumes:
+    - nexus-data-vol:/nexus-data
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+    - 9000:9000
+    volumes:
+    - sonar-conf-vol:/opt/sonarqube/conf 
+    - sonar-data-vol:/opt/sonarqube/data 
+    - sonar-log-vol:/opt/sonarqube/logs 
+    - sonar-extension-vol:/opt/sonarqube/extensions 
+
+volumes:
+  jenkins-home-vol: 
+    external: true
+    name: jenkins-home-vol
+  gitlab-config-vol:
+    external: true
+    name: gitlab-config-vol
+  gitlab-log-vol:
+    external: true
+    name: gitlab-log-vol
+  gitlab-data-vol:
+    external: true
+    name: gitlab-data-vol
+  nexus-data-vol:
+    external: true
+    name: nexus-data-vol
+  sonar-data-vol:
+    external: true
+    name: sonar-data-vol
+  sonar-conf-vol:
+    external: true
+    name: sonar-conf-vol
+  sonar-log-vol:
+    external: true
+    name: sonar-log-vol
+  sonar-extension-vol:
+    external: true
+    name: sonar-extension-vol
