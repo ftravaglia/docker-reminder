@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.4.2
+    volumes:
+      - ./logstash-config/:/usr/share/logstash/config/
+    depends_on:
+      - elasticsearch
+    networks:
+      - esnet
+volumes:
+  esdata1:
+    driver: local
+networks:
+  esnet:

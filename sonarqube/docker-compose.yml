@@ -13,13 +13,13 @@ services:
 volumes:
   sonar-data-vol:
     external: true
-    name: sonar--data-vol
+    name: sonar-audit-data-vol
   sonar-conf-vol:
     external: true
-    name: sonar-conf-vol
+    name: sonar-audit-conf-vol
   sonar-log-vol:
     external: true
-    name: sonar-log-vol
+    name: sonar-audit-log-vol
   sonar-extension-vol:
     external: true
-    name: sonar-extension-vol
+    name: sonar-audit-extension-vol
